@@ -1,7 +1,9 @@
 ChatLoop.Models.Room = Backbone.Model.extend({
-
-    validate: function () {
-        return $.trim(this.get("name"));
+    urlRoot: "/rooms",
+    validate: function (attrs,options) {
+        if(!$.trim(attrs.name)){
+            return "Room name can't be blank";
+        }
     }
 
 });

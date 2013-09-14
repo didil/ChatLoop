@@ -12,8 +12,8 @@ gem 'pg'
 gem 'puma'
 gem 'simple_form', '>= 3.0.0.rc'
 gem 'backbone-on-rails'
+gem 'marionette-rails'
 gem 'handlebars_assets'
-gem "zeus"
 gem "font-awesome-rails"
 
 group :assets do
@@ -29,6 +29,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem "zeus"
 end
 group :test do
   gem "sqlite3"

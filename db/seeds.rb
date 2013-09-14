@@ -7,3 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
+
+room = Room.create(:name => "Main")
+user = User.create(:name => "Mike")
+5.times do
+  room.messages.create(:content => "Hello there", :user_id => user.id)
+end

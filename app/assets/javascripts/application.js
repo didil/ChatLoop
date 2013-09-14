@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require backbone.marionette
 //= require handlebars.runtime
 //= require chat_loop
 //= require_tree ../templates

@@ -1,5 +1,8 @@
 ChatLoop::Application.routes.draw do
 
+  resource :rooms
+  resource :messages
+  resource :users
 
   root :to => "home#index"
 

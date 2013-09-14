@@ -18,14 +18,12 @@ ChatLoop.Views.RoomsIndex = Backbone.View.extend({
     },
     submit: function (e) {
         e.preventDefault();
-        if (this.model.validate()) {
-            $("#select_room_container").animate({ "margin-left": "-=1000px" }, {duration: 1000, complete: function(){
-                this.parent().remove();
-            } });
+        if (this.model.isValid()) {
+            $("#select_room_container").animate({ "margin-left": "-=1000px" }, {duration: 1000 });
             Backbone.history.navigate("rooms/" + this.model.get('name'), true);
         }
         else {
-            $.jGrowl("Please enter a room name", { sticky: true, header: 'No Entry' });
+            $.jGrowl("Please enter a room name", { life: 8000, header: 'No Entry' });
         }
     }
 })
