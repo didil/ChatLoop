@@ -33,6 +33,7 @@ end
 group :test do
   gem "sqlite3"
   gem 'capybara'
+  gem "capybara-webkit"
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end
