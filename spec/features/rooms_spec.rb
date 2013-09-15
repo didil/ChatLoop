@@ -7,7 +7,7 @@ describe 'chat rooms' do
     visit "/"
     fill_in "name", :with => "New Room"
     click_button "Go"
-    page.should have_content "Welcome to #{room}"
+    page.should have_content "Welcome to the room: #{room}"
   end
 
 end

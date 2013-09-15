@@ -1,8 +1,11 @@
 ChatLoop::Application.routes.draw do
 
-  resource :rooms
-  resource :messages
-  resource :users
+  scope "/api" do
+    resources :rooms
+    resources :messages
+    resources :users
+  end
+
 
   root :to => "home#index"
 

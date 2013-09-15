@@ -11,17 +11,13 @@ ChatLoop.Routers.Rooms = Backbone.Router.extend({
         $('#app').html(view.render().el);
     },
     show: function (name) {
-        $.jGrowl("Welcome to " + name);
         var room = new ChatLoop.Models.Room({name: name});
-        room.save();
-        var layout = new ChatLoop.Views.RoomsLayout();
-        layout.render();
+        room.save(null, {success: function () {
+            $.jGrowl("Welcome to the room: " + name);
 
-        var messages = new ChatLoop.Collections.Messages();
-        messages.fetch({data: {room_id: room.get("id") }});
+            var layout = new ChatLoop.Views.RoomsLayout(room);
+            layout.render_all();
+        }});
 
-        var messagesIndexView = new ChatLoop.Views.MessagesIndex({collection: messages});
-
-        layout.messagesList.show(messagesIndexView);
     }
 });
