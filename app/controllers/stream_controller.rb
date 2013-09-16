@@ -13,6 +13,7 @@ class StreamController < ApplicationController
 
     begin
       room.on_new_message do
+        REDIS.rpush room.channel, user_id
         Message.connection.clear_query_cache
         messages = room.messages.includes(:user)
         messages_serializer = ActiveModel::ArraySerializer.new messages
