@@ -8,9 +8,8 @@ class StreamController < ApplicationController
     room = Room.find(params[:room_id])
     response.headers['Content-Type'] = 'text/event-stream'
     sse = Reloader::SSE.new(response.stream)
-    redis = Redis.new
-    redis.rpush room.channel, user_id
-    redis.quit
+
+    REDIS.rpush room.channel, user_id
 
     begin
       room.on_new_message do
@@ -24,9 +23,7 @@ class StreamController < ApplicationController
     ensure
       sse.close
 
-      redis = Redis.new
-      redis.lrem room.channel, 0, user_id
-      redis.quit
+      REDIS.lrem room.channel, 0, user_id
     end
   end
 
@@ -34,11 +31,10 @@ class StreamController < ApplicationController
     room = Room.find(params[:room_id])
     response.headers['Content-Type'] = 'text/event-stream'
     sse = Reloader::SSE.new(response.stream)
-    redis = Redis.new
 
     begin
       loop do
-        users_ids = redis.lrange(room.channel, 0, -1).map(&:to_i)
+        users_ids = REDIS.lrange(room.channel, 0, -1).map(&:to_i)
         users = User.where("id in (?)", users_ids)
         users_serializer = ActiveModel::ArraySerializer.new users
         sse.write(users_serializer, :event => 'users.refresh')
@@ -49,8 +45,6 @@ class StreamController < ApplicationController
       # When the client disconnects, we'll get an IOError on write
     ensure
       sse.close
-
-      redis.quit
     end
 
   end

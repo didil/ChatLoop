@@ -8,13 +8,11 @@ class UsersController < ApplicationController
   end
 
   def sign_out
-    redis = Redis.new
     room_channels = Room.all.pluck(:id).map { |id| "room_#{id}"}
     room_channels.each do |channel|
-      redis.lrem channel, 0, params[:user_id]
+      REDIS.lrem channel, 0, params[:user_id]
     end
 
-    redis.quit
     render :text => "ok"
   end
 
