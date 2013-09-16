@@ -2,8 +2,7 @@ ChatLoop.Views.RoomsIndex = Backbone.View.extend({
     template: HandlebarsTemplates['rooms/index'],
 
     events: {
-        "submit": "submit",
-        "change #name": "set_name"
+        "submit": "submit"
     },
 
     render: function () {
@@ -13,11 +12,21 @@ ChatLoop.Views.RoomsIndex = Backbone.View.extend({
         });
         return this;
     },
-    set_name: function () {
-        this.model.set({name: $("#name").val()});
-    },
     submit: function (e) {
         e.preventDefault();
+        this.model.set({name: $("#room_name").val()});
+        var usermodel = new ChatLoop.Models.User({name: $("#nickname").val()});
+
+        if (!usermodel.isValid()) {
+            $.jGrowl("Please enter a nickname", { life: 8000, header: 'No Entry' });
+            return;
+        }
+        else {
+            usermodel.save(null, {success: function () {
+                $.cookie('user_id', usermodel.get("id"));
+            }});
+        }
+
         if (this.model.isValid()) {
             $("#select_room_container").animate({ "margin-left": "-=1000px" }, {duration: 1000 });
             Backbone.history.navigate("rooms/" + this.model.get('name'), true);

@@ -42,21 +42,25 @@ html, body {
   min-height: 100%;
   .container{
     overflow:auto;
-    padding-bottom:72px; /* this needs to be bigger than footer height*/
+  //  padding-bottom:72px; /* this needs to be bigger than footer height*/
     padding-left: 0px;
     padding-right: 0px;
   }
 }
 
-.footer {
+#footer {
   position: relative;
-  margin-top: -72px; /* negative value of footer height */
-  height: 72px;
+  margin-top: -52px; /* negative value of footer height */
+  height: 52px;
   clear:both;
-  padding-top:20px;
 
   .navbar{
     border-radius: 0px;
   }
 
+}
+
+.no-gutter{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }

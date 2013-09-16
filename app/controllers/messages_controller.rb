@@ -8,8 +8,8 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message_params = params.permit(:room_id, :content)
-    message = Message.create(:room_id => message_params[:room_id], :content => message_params[:content])
+    message_params = params.permit(:room_id, :user_id, :content)
+    message = Message.create(message_params)
     respond_with message
   end
 

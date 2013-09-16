@@ -15,6 +15,9 @@ gem 'backbone-on-rails'
 gem 'marionette-rails'
 gem 'handlebars_assets'
 gem "font-awesome-rails"
+gem "awesome_print"
+gem "active_model_serializers"
+gem "redis"
 
 group :assets do
   gem 'therubyracer', :platform=>:ruby

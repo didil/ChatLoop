@@ -1,9 +1,10 @@
 class RoomsController < ApplicationController
+  respond_to :json
 
   def create
     room_params = params.permit(:name)
     room = Room.get_room(room_params[:name])
-    render :json => room.to_json
+    respond_with room
   end
 
 end

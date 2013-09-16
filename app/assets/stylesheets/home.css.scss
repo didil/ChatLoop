@@ -1,13 +1,47 @@
-#select_room_container {
 
-  #select_room_form {
-    text-align: center;
-    #name {
-      margin-bottom: 15px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 75%;
-      text-align: center;
+#main{
+  .container{
+    position: relative;
+    #app {
+
+      #select_room_container {
+
+        #select_room_form {
+          text-align: center;
+          input {
+            margin-bottom: 8px;
+            text-align: center;
+          }
+        }
+      }
+
+      #messages_list {
+        overflow: auto;
+        .message{
+          padding-left: 8px;
+          padding-right: 15px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          border-bottom: 1px dotted black;
+
+          .message_user_nickname{
+            margin-right: 5px;
+          }
+          .message_created_at{
+            font-size: 12px;
+            font-style: italic;
+          }
+        }
+      }
+
+      #new_message {
+        position: absolute;
+        bottom: 0px;
+      }
     }
+
+
+
   }
 }
+

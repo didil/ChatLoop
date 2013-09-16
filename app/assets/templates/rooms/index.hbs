@@ -3,10 +3,15 @@
   <form id="select_room_form">
     <p class="lead">
       Welcome to ChatLoop ! <br>
-      Please enter the name of the chat room you would like to join
+      Please choose a room name and a nickname
     </p>
-    <input id="name" class="form-control" type="text" class="form-control" value="{{name}}"/>
-    <button type="submit" class="btn btn-primary btn-lg">Go</button>
+    <div class="span5">
+      <input id="room_name" class="form-control" type="text" class="form-control" value="{{room_name}}" placeholder="Room Name"/>
+    </div>
+    <div class="span5">
+      <input id="nickname" class="form-control" type="text" class="form-control" value="{{nickname}}" placeholder="Nickname"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Go</button>
   </form>
 </div>
 <div class="span3"></div>
