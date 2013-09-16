@@ -5,13 +5,12 @@ describe RoomsController do
 
   it "creates" do
     name = "Main"
-    room_json = "json"
-    room = double(:to_json => room_json)
+    room = FactoryGirl.create(:room)
     Room.stub(:get_room).with(name) { room }
 
     xhr :post, :create, :name => name
 
-    response.body.should eq room_json
+    response.body.should eq room.to_json
   end
 
 end

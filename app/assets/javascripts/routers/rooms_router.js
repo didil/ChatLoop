@@ -7,6 +7,7 @@ ChatLoop.Routers.Rooms = Backbone.Router.extend({
         this.room = new ChatLoop.Models.Room({name: "Main" });
     },
     index: function () {
+        ChatLoop.sign_out();
         var view = new ChatLoop.Views.RoomsIndex({model: this.room});
         $('#app').html(view.render().el);
     },
@@ -18,6 +19,5 @@ ChatLoop.Routers.Rooms = Backbone.Router.extend({
             var layout = new ChatLoop.Views.RoomsLayout(room);
             layout.render_all();
         }});
-
     }
 });

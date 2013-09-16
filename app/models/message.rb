@@ -10,7 +10,7 @@ class Message < ActiveRecord::Base
     user ? user.name : "Anonymous"
   end
 
-  after_create :notify_new_message
+  after_create :notify_new_message , :if => ->{ !Rails.env.test?}
 
   def notify_new_message
     ActiveRecord::Base.connection.execute "NOTIFY #{channel}"

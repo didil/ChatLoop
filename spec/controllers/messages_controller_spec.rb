@@ -1,27 +1,26 @@
 require 'spec_helper'
 
 describe MessagesController do
-  render_views
 
-  let(:room_id) {"4"}
+  let(:room_id) { "4" }
 
   it "index" do
-    messages = [stub_model(Message), stub_model(Message)]
+    messages = [FactoryGirl.create(:message), FactoryGirl.create(:message)]
     Message.stub(:for_room).with(room_id) { messages }
 
     xhr :get, :index, :room_id => room_id
 
-    response.body.should  eq messages.to_json
+    response.body.should eq "[{\"id\":1,\"content\":\"MyText\",\"created_at\":\"less than a minute ago\",\"user_nickname\":\"Anonymous\"},{\"id\":2,\"content\":\"MyText\",\"created_at\":\"less than a minute ago\",\"user_nickname\":\"Anonymous\"}]"
   end
 
   it "creates" do
     content ="Hello all"
-    message = stub_model(Message)
-    Message.stub(:create).with(:room_id => room_id, :content => content ) { message }
+    message = FactoryGirl.create(:message)
+    Message.stub(:create).with("room_id" => room_id, "content" => content) { message }
 
-    xhr :post, :create, :room_id => room_id , :content => content
+    xhr :post, :create, :room_id => room_id, :content => content
 
-    response.body.should  eq message.to_json
+    response.body.should eq "{\"id\":1,\"content\":\"MyText\",\"created_at\":\"less than a minute ago\",\"user_nickname\":\"Anonymous\"}"
   end
 
 end

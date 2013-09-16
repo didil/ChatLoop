@@ -13,6 +13,8 @@ window.ChatLoop = {
         $('#messages').slimScroll({height: 'auto', alwaysVisible: true, start: "bottom"});
         $('#users_list .panel-body').css({'height': ($("#main .container").height() - $("#new_message").outerHeight() - $("#users_list .panel-heading").outerHeight()) + 'px'});
         $('#users').slimScroll({height: 'auto', alwaysVisible: true, start: "bottom"});
+    }, sign_out: function () {
+        $.post("/api/users/sign_out", {user_id: $.cookie("user_id")});
     }
 };
 
@@ -24,6 +26,6 @@ $(document).ready(function () {
         ChatLoop.resizeSections();
     });
     window.onbeforeunload = function () {
-        $.post("/api/users/sign_out",{user_id: $.cookie("user_id")});
+        ChatLoop.sign_out();
     };
 });

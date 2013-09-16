@@ -26,10 +26,11 @@ ChatLoop.Views.RoomsIndex = Backbone.View.extend({
                 $.cookie('user_id', usermodel.get("id"));
             }});
         }
-
+        var that = this;
         if (this.model.isValid()) {
-            $("#select_room_container").animate({ "margin-left": "-=1000px" }, {duration: 1000 });
-            Backbone.history.navigate("rooms/" + this.model.get('name'), true);
+            $("#select_room_container").animate({ "margin-left": "-=1000px" }, {duration: 1000, complete: function () {
+                Backbone.history.navigate("rooms/" + that.model.get('name'), true);
+            } });
         }
         else {
             $.jGrowl("Please enter a room name", { life: 8000, header: 'No Entry' });

@@ -1,17 +1,15 @@
 require 'spec_helper'
 
 describe UsersController do
-  render_views
 
   it "creates" do
     name = "Main"
-    user_json = "json"
-    user = double(:to_json => user_json)
+    user = FactoryGirl.create(:user)
     User.stub(:get_user).with(name) { user }
 
     xhr :post, :create, :name => name
 
-    response.body.should eq user_json
+    response.body.should eq "{\"id\":1,\"name\":\"MyString\"}"
   end
 
 end
