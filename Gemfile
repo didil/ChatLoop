@@ -18,6 +18,7 @@ gem "font-awesome-rails"
 gem "awesome_print"
 gem "active_model_serializers"
 gem "redis"
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'therubyracer', :platform=>:ruby
