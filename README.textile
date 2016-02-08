@@ -10,4 +10,4 @@ hosted on http://chatloop.herokuapp.com/
 
 h2. Credits
 
-Adil Haritah - 2013
+Adil H - 2013
